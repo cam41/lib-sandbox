@@ -2,5 +2,46 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "demolib": {
+      "projectType": "library",
+      "root": "projects/demolib",
+      "sourceRoot": "projects/demolib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/demolib/tsconfig.lib.json",
+            "project": "projects/demolib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/demolib/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/demolib/src/test.ts",
+            "tsConfig": "projects/demolib/tsconfig.spec.json",
+            "karmaConfig": "projects/demolib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/demolib/tsconfig.lib.json",
+              "projects/demolib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "defaultProject": "demolib"
 }

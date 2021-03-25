@@ -1,27 +1,39 @@
-# Library
+# How to create and publish a library
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.12.
+Reference: [Demo of local library creation and installation.](https://www.youtube.com/watch?v=U--hmDBGfa8).
 
-## Development server
+1. Create workspace and library name /n
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+````ng new workspaceName --create-application=false
+cd workspaceName
+ng generate library libraryName```
 
-## Code scaffolding
+2. Make edits for library/ what I want exported (the bulk of the work)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+3. ng build libraryName
 
-## Build
+4. cd into dist/libraryName
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+5. run npm pack
 
-## Running unit tests
+6. inside dist/libraryName, there will be a .tgz file. This can be installed locally as a library from a separate client application by creating the path to it within the package.json. i.e. "demo-lib": "../../library/dist/demolib/demolib-0.0.1.tgz"
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+7. In client application, run npm install
 
-## Running end-to-end tests
+## Local Installation
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+8. Check that the library downloaded in node_modules to confirm it downloaded.
 
-## Further help
+## Publish and Install
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+9. run ng build --prod to ensure it is build in ViewEngine.
+
+Reference: https://github.com/angular/angular/issues/37973.
+
+10. cd into dist/libraryName
+
+11. run npm publish. You may need to alter the version in your package.json if you have the same version already published and repeat steps 9 and 10.
+    **NOTE**: If your npm account isn't connected already, run npm adduser and follow the prompts.
+
+12. In client application, import what is needed from the library (i.e. 10:10 of YT video) in component.ts file and use it within the HTML file.
+````
