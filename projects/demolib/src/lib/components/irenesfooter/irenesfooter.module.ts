@@ -8,6 +8,7 @@ import { IrenesfooterComponent } from './irenesfooter.component';
   declarations: [IrenesfooterComponent],
   imports: [
     CommonModule
-  ]
+  ],
+  exports: [IrenesfooterComponent]
 })
 export class IrenesfooterModule { }
