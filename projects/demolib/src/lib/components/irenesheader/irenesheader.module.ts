@@ -7,6 +7,7 @@ import {IrenesheaderComponent} from './irenesheader.component'
   declarations: [IrenesheaderComponent],
   imports: [
     CommonModule
-  ]
+  ],
+  exports: [IrenesheaderComponent]
 })
 export class IrenesheaderModule { }
